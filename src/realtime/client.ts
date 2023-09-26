@@ -11,6 +11,8 @@ import {
   AddPartialTranslation,
   SessionConfig,
   ISocketWrapper,
+  Warning,
+  Info,
 } from '../types';
 import * as nodeWrapper from '../realtime/node';
 import * as webWrapper from '../realtime/browser';
@@ -72,6 +74,15 @@ export class RealtimeSession {
       onError: (data: ModelError) => {
         this.emitter.emit(MessagesEnum.Error, data);
       },
+      onAudioAdded: () => {
+        this.emitter.emit(MessagesEnum.AudioAdded);
+      },
+      onWarning: (data: Warning) => {
+        this.emitter.emit(MessagesEnum.Warning, data);
+      },
+      onInfo: (data: Info) => {
+        this.emitter.emit(MessagesEnum.Info, data);
+      }
     };
   }
 

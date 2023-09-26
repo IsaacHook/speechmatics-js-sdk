@@ -117,6 +117,7 @@ export class RealtimeSocketHandler {
         break;
 
       case MessagesEnum.AudioAdded:
+        this.sub?.onAudioAdded?.();
         this.seqNoIn = (data as AudioAdded).seq_no || 0;
         break;
 
@@ -182,4 +183,5 @@ export type Subscriber = {
   onError?: (data: ModelError) => void;
   onInfo?: (data: Info) => void;
   onDisconnect?: () => void;
+  onAudioAdded?: () => void;
 };
